@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap{
+            width: 500px;
+            height: 500px;
+            background-color: rgb(148, 93, 26);
+            border: 10px solid black;
+            padding: 100px;
+        }
+        #wrap p {
+            width: 100%;
+            height: 100%;
+            background-color: brown;
+            transition-duration: 1s;
+        }
+
+        #wrap .on {
+            background-color: coral;
+            /* => 클래스 적용시
+            => 태그의 옵션으로  class=클래스명 */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <p class="on"></p>
+    </div>
+    <script>
+        const wrap=document.querySelector('wrap');
+        const p=document.querySelector('p');
+        // 이벤트 발생시
+        // => 이벤트를 발생시키는 객체
+        // => wrap에 클릭이벤트
+        // => 이벤트가 발생하면 실행이 되는 객체
+        // => p에 배경색이 변경이 되도록 클래스 on을 추가
+
+        // let cl=wrap.classList;
+        // console.log(cl);
+        wrap.addEventListener('click',()=>{
+            // 1. css 명령으로  p에 배경색을 직접 변경
+            // p.style.backgroundColor="yellow"
+            // 임의의 클래스 설정해서 
+            // 클래스 값을 추가, 제거명령
+            
+            // 선택자.classList.add('클래스명') 추가
+            // => 클래스 지정시 우선순위 확인필요
+            // p.classList.add('on');
+            // 선택자.classList.remove('클래스명') 제거
+            // p.classList.remove('on')
+            // 선택자.classList.contains('확인클래스명')
+            // => 있으면 참, 없으면 추가하기
+            // let isOn=p.classList.contains('on');
+            // // alert(isOn);
+            // if(isOn){
+            //     p.classList.remove('on');
+            // }else{
+            //     p.classList.add('on')
+            // }
+
+            // add+remove+contain명령 통합한 명령
+            // =>toggle
+            p.classList.toggle('on')
+
+        })
+    </script>
+</body>
+</html>

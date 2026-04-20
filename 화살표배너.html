@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .mask_box {
+            width: 500px;
+            height: 500px;
+            border: 10px solid black;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .move_box {
+            /* width: calc(100% * 7); */
+            height: 500px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition-duration: 0.5s;
+            display: flex;
+        }
+
+        .but {
+            width: 100px;
+            height: 100px;
+            font-size: 100px;
+            position: absolute;
+            top: calc(50% - 50px);
+        }
+
+        .left_but {
+            left: 0;
+        }
+
+        .right_but {
+            right: 0;
+        }
+
+        .img_box {
+            width: 500px;
+            height: 500px;
+            background-color: burlywood;
+            font-size: 100px;
+            text-align: center;
+            margin: 0 auto;
+            
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mask_box">
+        <div class="move_box">
+            <div class="img_box">1</div>
+            <div class="img_box">2</div>
+            <div class="img_box">3</div>
+            <div class="img_box">4</div>
+            <div class="img_box">5</div>
+            <div class="img_box">6</div>
+            <div class="img_box">7</div>
+            <div class="img_box">8</div>
+            <div class="img_box">9</div>
+
+        </div>
+        <div class="but left_but">&lt;</div>
+        <div class="but right_but">&gt;</div>
+    </div>
+
+    <script>
+        // 문제
+        // 오른쪽 버튼을 클릭할때 마다 move_box가 
+        // -500,-1000,-1500~ 움직이게 마지막영역에서는 움직이지 않게 만들기
+        // 왼쪽 버튼을 클릭하면 다시 오른쪽으로 가게 만들기
+
+        const move_box=document.querySelector('.move_box')
+        const left_but=document.querySelector('.left_but')
+        const right_but=document.querySelector('.right_but')
+
+        // img_box 전체를 선택 배열 구조 확인
+        const img_boxs=document.querySelectorAll('img_box');
+
+        const img_box=document.querySelector('.img_box');
+        // img-box의 가로크기값 사용
+        // => 선택한 객체의 크기값, 위치값 사용할때
+        const img_box_width=img_box.getBoundingClientRect();
+        // console.log(img_box_width)
+        img_box_width.width
+        // => 크기, 위치값 중 필요한 값을 사용하는 방법
+        move_box.style.width=`${img_box_width.width*img_boxs.length}ps`;
+
+
+        // mask_box의 가로세로 크기값은 img_box의 가로세로 크기와 동일하게 지경하기
+        const mask_box=document.querySelector('.mask_box');
+        mask_box.style.width=`${img_box_width.width}px`;
+        mask_box.style.height=`${img_box_width.height}px`;
+
+
+
+
+        let click_num=0;
+
+        right_but.addEventListener('click',()=>{
+            click_num++;
+            // 1,2,3...
+            // -500, -1000, -1500, -2000
+            if (click_num>7){
+                // 4=>img_box배열의 마지막 index값을 의미
+                // 배열.length=1
+                click_num=7
+            }
+            move_box.style.left=`-${click_num*img_box_width.width}px`
+        })
+
+        left_but.addEventListener('click',()=>{
+            // -2000, -1500, -1000, -500, 0
+            click_num--;
+            // 4,3,2,1,0
+
+            move_box.style.left=`-${click_num*img_box_width.width}px`
+        })
+
+        
+
+
+    </script>
+
+</body>
+
+</html>

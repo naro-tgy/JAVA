@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* body {} */
+
+        ul {
+            border: 10px solid black;
+        }
+
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 10px;
+        }
+
+        .box,
+        .bg_box {
+            width: 400px;
+            height: 400px;
+            border: 10px solid black;
+        }
+
+        .bg_box {
+            background-image: url(./b.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 마우스 이벤트
+            // click: 객체를 눌렀다 뗏을때 
+            // abclick: 연속적으로 객체를 눌렀다 뗏을때
+            // mousedown : 객체를 눌렀을때
+            // mouseup : 객체에서 뗏을떄
+            // mouseover : 객체에 마우스를 올렸을때
+            // mouseout : 객체에서 마우스가 벗어 났을때
+            // mouseenter : 마우스가 객체 영역으로 들어 갔을때
+            // mouseleave : 마우스가 객체 영역에서 벗어 났을때
+            // mousemove : 마우스가 움직일때
+            // hover : mouseenter + mouseleave
+
+            // 이벤트 연결하기
+            // $(선택자 : 마우스로 제어하는 객체).on({
+            //     이벤트명: function(){이벤트발생식},
+            //     이벤트명: function(){이벤트발생식},
+            //     이벤트명: function(){이벤트발생식}...
+            // })
+            // $(객체).이벤트명(function(){
+            //     이벤트발생식
+            // })
+
+            // 이벤트 해지하기
+            // $(선택자: 마우스로 제어하는 객체).off('이벤트명')
+
+            // $('li').on({
+            //     mouseenter: function () {
+            //         $('li').css({
+            //             backgroundColor: 'red'
+            //         })
+            //     },
+            //     mouseleave: function () {
+            //         $('li').css({
+            //             backgroundColor: 'blue'
+            //         })
+            //     }
+            // })
+            // $('li').hover(function () {
+            //     // moseenter영역
+            //     $(this).css({
+            //         backgroundColor: 'green'
+            //     })
+            // }, function () {
+            //     // mouseleave영역
+            //     $(this).css({
+            //         backgroundColor: 'yellow'
+            //     })
+            // })
+
+            // ul영역을 첫번째 클릭하면 배경색 빨강
+            // 두번째 클릭하면 배경색 파랑
+            // 세번째 클릭하면 배경색 노랑
+            // 네번째 클릭하면 배경색 초록
+
+            // let click_b='첫번째클릭';
+
+            // $('ul').click(function(){
+            //     if (click_b=='첫번째클릭'){
+            //         $('ul').css({
+            //             backgroundColor:'red'
+            //         })
+            //         click_b='두번째클릭'
+            //     }else if (click_b=='두번째클릭'){
+            //         $('ul').css({
+            //             backgroundColor:'blue'
+            //         })
+
+            //     }
+            // })
+
+            let click_num = 0;
+            $('ul').click(function () {
+                if (click_num == 0) {
+                    $(this).css({
+                        backgroundColor: 'red'
+                    })
+                    click_num++;
+
+
+                } else if (click_num == 2) {
+                    $(this).css({
+                        backgroundColor: 'blue'
+                    })
+                    click_num++;
+
+
+                } else if (click_num == 3) {
+                    $(this).css({
+                        backgroundColor: 'yellow'
+                    })
+                    click_num++;
+
+
+                } else if (click_num == 4) {
+                    $(this).css({
+                        backgroundColor: 'green'
+                    })
+                    click_num = 0;
+                }
+
+            })
+
+            // 배경이미지 변경
+            let click_n=0;
+            $('.bg_box').on({
+                click:function(){
+                    if(click_n==0){
+                        $(this).css({
+                            backgroundImage: 'url(./a.jpg)'
+                        })
+                        click_n++;
+                    }else{
+                        $(this).css({
+                            backgroundImage: 'url(./b.jpg)'
+                        })
+                        click_n--;
+                    }
+                }
+            })
+
+
+            // 태그에 옵션을 추가, 변경, 가지고 올때 
+            // => attr({
+            //     옵션명:옵션값,
+            //     옵션명:옵션값
+            // })
+            // 태그의 옵션을 삭제 할때
+            // =>removeAttr(옵션명)
+            // $('.box>img').attr({
+            //     scr:'./b.jpg'
+            // })
+            // box를 첫번째 클릭하면 a.jpg -> b.jpg로 변경
+            // box를 두번째 클릭하면 b.jpg -> a.jpg로 변경
+
+            // $('.box').click(function(){
+            //     // if(click_i == 0){
+            //     //     $('.box>img').attr({
+            //     //         src:'./b.jpg'
+            //     //     })
+            //         click_i++;
+            //     }else{
+            //         $('.box>img').attr({
+            //             src:'./a.jpg'
+            //         })
+            //         click_i--;
+            //     }
+            // })
+
+
+            // css()
+            // => 스타일 시트 속성을 지정하는 명령
+            // => 기존 스타일 변경, 삽입, css지정값을 활용
+            // let box_width=parsefloat($('box').css('width'));
+            // => paresInt() 단위값 빼고 정수형의 숫자값을 활용하기
+            // => parseFloat() 단위값 빼고 실수형의 숫자값을 활용하기
+            // 가로세로값 은 활용이 많은 경우 명령으로 따로 지정해둠
+            let box_width=$('.box').width();
+            console.log(box_width);
+
+        })
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <div class="box">
+        <img src="/a.jpg" alt="">
+    </div>
+    <div class="bg_box"></div>
+</body>
+
+</html>

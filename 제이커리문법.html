@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+        // src로 연결된 script파일 내부에는 아무것도 삽입 할 수 없음
+    </script>
+    <script>
+        // // ${선택지}
+        // $(document).ready(function () {
+        //     // 제이쿼리 내용을 작성함
+        // })
+        // // =>축약형
+        // ${
+        //     function() {
+        //     // 제이쿼리 내용을 작성함  
+        // }}
+        // document.addEventListener('DOMcontentLoaded',()=>{})
+        // =>자바스크립트에서 문서 로드 이벤트
+
+        $(document).ready(function () {
+            // ${'css선택자'}
+            // => 태그 선택 ${'태그명'}
+            // => 클래스 선택 ${'.클래스명'}
+            // => 아이디 선택 ${'#아이디명'}
+            // ${document},${window},${this}=>''없음
+            { '.box'}css({
+            width: 400,
+            height: 400,
+            border: '10px soild black',
+            fontSize: '30px',
+            textAlign: 'center'
+            })
+            // const box=document.querySelector('.box');
+            // box.style.width='400px';
+            // box.style.height='400px';
+            // box.style.border='10px solid black';
+            // box.style.frontSize='30px';
+            // box.style.textAlign='center';
+            // ${선택자}.css('속성명','속성값')
+            // ${선택자}.css('속성명',function(){})
+            // ${선택자}.css({
+            //     속성명:'속성값',
+            //     속성명:'속성값',
+            //     속성명:function(){},
+            //     속성명:function(){}
+            // })
+
+
+
+        })
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        텍스트
+    </div>
+</body>
+
+</html>
